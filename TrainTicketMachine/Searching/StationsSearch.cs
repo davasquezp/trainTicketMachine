@@ -6,40 +6,35 @@ namespace TrainTicketMachine.Searching
 {
     public class StationsSearch
     {
-        private Trie stationsLexicalTree;
+        private Trie stationsTrie;
 
-        private StationsSearch(Trie stationsLexicalTree)
+        private StationsSearch(Trie stationsTrie)
         {
-            this.stationsLexicalTree = stationsLexicalTree;
+            this.stationsTrie = stationsTrie;
         }
 
         public static StationsSearch BuildFromStations(IEnumerable<string> stations)
         {
-            var stationsLexicalTree = new Trie();
+            var stationsTrie = new Trie();
 
             foreach (var station in stations)
             {
-                stationsLexicalTree.Insert(station);
+                stationsTrie.Insert(station);
             }
 
-            return new StationsSearch(stationsLexicalTree);
+            return new StationsSearch(stationsTrie);
         }
 
         public (IEnumerable<string>, IEnumerable<char>) Search(string searchString)
         {
-            searchString = searchString.Trim()
+            var sanitizedSearchString = searchString.Trim()
                 .ToUpper();
 
-            var lexicalTreeNode = stationsLexicalTree.Search(searchString);
+            var trieNode = stationsTrie.Search(sanitizedSearchString);
 
-            if (lexicalTreeNode.IsLeaf())
-            {
-                return (Enumerable.Empty<string>(), Enumerable.Empty<char>());
-            }
-         
-            return (lexicalTreeNode.GetWords()
-                    .Select(word => searchString + word),
-                lexicalTreeNode.getChildren()
+            return (trieNode.GetWords()
+                    .Select(word => sanitizedSearchString + word),
+                trieNode.getChildren()
                     .Select(x => x.Key));
         }
     }
