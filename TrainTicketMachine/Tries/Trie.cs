@@ -2,7 +2,7 @@
 {
     public class Trie
     {
-        private TrieNode root;
+        private readonly TrieNode root;
 
         public Trie()
         {
@@ -36,7 +36,7 @@
 
         public TrieNode Search(string word)
         {
-            return string.IsNullOrEmpty(word) ? 
+            return string.IsNullOrEmpty(word) ?
                 TrieNode.Empty() :
                 Search(root, word[0], word.Remove(0, 1));
         }

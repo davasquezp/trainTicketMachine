@@ -6,7 +6,7 @@ namespace TrainTicketMachine.Searching
 {
     public class StationsSearch
     {
-        private Trie stationsTrie;
+        private readonly Trie stationsTrie;
 
         private StationsSearch(Trie stationsTrie)
         {
