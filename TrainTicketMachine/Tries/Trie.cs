@@ -36,7 +36,9 @@
 
         public TrieNode Search(string word)
         {
-            return string.IsNullOrEmpty(word) ? TrieNode.Empty() : Search(root, word[0], word.Remove(0, 1));
+            return string.IsNullOrEmpty(word) ? 
+                TrieNode.Empty() :
+                Search(root, word[0], word.Remove(0, 1));
         }
 
         private static TrieNode Search(TrieNode root, char key, string remaining)

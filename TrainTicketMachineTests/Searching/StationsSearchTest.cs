@@ -58,7 +58,7 @@ namespace TrainTicketMachineTests
         [Fact]
         public void ShouldFindStationsTrimmingSpaces()
         {
-            var givenStations = new[] { "LIVERPOOL", "LONDON BRIDGE", "LONDONDERRY" };
+            var givenStations = new[] { "LIVERPOOL", "LONDON BRIDGE", "LONDONDERRY"};
             var searchString = "  LoNDoN  ";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
@@ -71,7 +71,7 @@ namespace TrainTicketMachineTests
         [Fact]
         public void ShouldReturnEmptyListWhenKeywordIsEmpty()
         {
-            var givenStations = new[] { "LIVERPOOL", "LONDON BRIDGE", "LONDONDERRY" };
+            var givenStations = new[] { "LIVERPOOL", "LONDON BRIDGE", "LONDONDERRY"};
             var searchString = string.Empty;
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);

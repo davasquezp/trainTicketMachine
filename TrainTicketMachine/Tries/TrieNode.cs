@@ -29,11 +29,6 @@ namespace TrainTicketMachine.Tries
             return new TrieNode();
         }
 
-        public bool IsLeaf()
-        {
-            return !children.Any();
-        }
-
         public Dictionary<char, TrieNode> getChildren()
         {
             return children;
@@ -47,14 +42,14 @@ namespace TrainTicketMachine.Tries
 
         private static IEnumerable<string> GetWords(TrieNode node)
         {
-            if (node.IsLeaf())
+            if (!node.children.Any())
             {
                 return new[] { node.key.ToString() };
             }
 
             return node.getChildren()
                 .SelectMany(children => GetWords(children.Value)
-                    .Select(word => node.key + word));
+                                            .Select(word => node.key + word));
         }
 
     }
