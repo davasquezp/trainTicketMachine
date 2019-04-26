@@ -1,3 +1,4 @@
+using System.Linq;
 using TrainTicketMachine.Searching;
 using Xunit;
 
@@ -77,6 +78,19 @@ namespace TrainTicketMachineTests
             var (stations, characters) = stationsSearch.Search(searchString);
             Assert.Empty(stations);
             Assert.Empty(characters);
+        }
+
+        [Fact]
+        public void ShouldReturnNotDuplicatedChars()
+        {
+            var givenStations = new[] { "LIVERPOOL", "LONDONDUNE", "LONDONDERRY" };
+            var searchString = "LONDON";
+            var stationsSearch = StationsSearch.BuildFromStations(givenStations);
+            var (stations, characters) = stationsSearch.Search(searchString);
+            Assert.Contains("LONDONDUNE", stations);
+            Assert.Contains("LONDONDERRY", stations);
+            Assert.Single(characters);
+            Assert.Contains('D', characters);
         }
     }
 }
