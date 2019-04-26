@@ -40,6 +40,11 @@ namespace TrainTicketMachine.Tries
                                                     .Select(word => word.Remove(word.Length -1)));
         }
 
+        public IEnumerable<char> GetNextCharacters()
+        {
+            return children.Keys.Where(key => key != EMPTY_CHAR);
+        }
+
         private static IEnumerable<string> GetWords(TrieNode node)
         {
             if (!node.children.Any())

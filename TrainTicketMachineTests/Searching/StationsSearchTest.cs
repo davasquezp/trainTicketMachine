@@ -9,12 +9,18 @@ namespace TrainTicketMachineTests
         [Fact]
         public void ShouldFindStationsAndNextCharacters()
         {
-            var givenStations = new []{ "DARTFORD", "DARTMOUTH", "TOWERHILL" };
+            var givenStations = new []{ "DARTFORD", "DARTMOUTH", "DARTSHIRE", "TOWERHILL" };
             var searchString = "DART";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
+            Assert.Equal(3, stations.Count());
+            Assert.Contains("DARTSHIRE", stations);
             Assert.Contains("DARTFORD", stations);
             Assert.Contains("DARTMOUTH", stations);
+
+            Assert.Equal(3, characters.Count());
+            Assert.Contains('S', characters);
             Assert.Contains('F',  characters);
             Assert.Contains('M', characters);
         }
@@ -26,8 +32,12 @@ namespace TrainTicketMachineTests
             var searchString = "LIVERPOOL LIME";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
+            Assert.Equal(2, stations.Count());
             Assert.Contains("LIVERPOOL LIME", stations);
             Assert.Contains("LIVERPOOL LIME STREET", stations);
+
+            Assert.Single(characters);
             Assert.Contains(' ', characters);
         }
 
@@ -50,8 +60,12 @@ namespace TrainTicketMachineTests
             var searchString = "LoNDoN";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
+            Assert.Equal(2, stations.Count());
             Assert.Contains("LONDON BRIDGE", stations);
             Assert.Contains("LONDONDERRY", stations);
+
+            Assert.Equal(2, characters.Count());
             Assert.Contains(' ', characters);
             Assert.Contains('D', characters);
         }
@@ -63,8 +77,12 @@ namespace TrainTicketMachineTests
             var searchString = "  LoNDoN  ";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
+            Assert.Equal(2, stations.Count());
             Assert.Contains("LONDON BRIDGE", stations);
             Assert.Contains("LONDONDERRY", stations);
+
+            Assert.Equal(2, characters.Count());
             Assert.Contains(' ', characters);
             Assert.Contains('D', characters);
         }
@@ -76,6 +94,7 @@ namespace TrainTicketMachineTests
             var searchString = string.Empty;
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
             Assert.Empty(stations);
             Assert.Empty(characters);
         }
@@ -87,8 +106,11 @@ namespace TrainTicketMachineTests
             var searchString = "LONDON";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
+
+            Assert.Equal(2, stations.Count());
             Assert.Contains("LONDONDUNE", stations);
             Assert.Contains("LONDONDERRY", stations);
+
             Assert.Single(characters);
             Assert.Contains('D', characters);
         }

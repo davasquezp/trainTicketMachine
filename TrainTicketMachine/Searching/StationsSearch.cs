@@ -34,8 +34,7 @@ namespace TrainTicketMachine.Searching
 
             return (trieNode.GetWords()
                     .Select(word => sanitizedSearchString + word),
-                trieNode.getChildren()
-                    .Select(x => x.Key));
+                    trieNode.GetNextCharacters());
         }
     }
 }
