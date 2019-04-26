@@ -15,4 +15,4 @@ The matching words are obtained by recursively traversing the tree from the last
 
 # Platform and tools
 
-Solution is built us using dotnetcore 2.1 and xUnit is used as test library. 
+Solution is built us using dotnetcore 2.1 and xUnit 2.4.0 is used as test library. 
