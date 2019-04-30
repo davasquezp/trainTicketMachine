@@ -27,7 +27,7 @@ namespace TrainTicketMachine.Searching
 
         public (IEnumerable<string>, IEnumerable<char>) Search(string searchString)
         {
-            var sanitizedSearchString = searchString.Trim()
+            var sanitizedSearchString = searchString
                 .ToUpper();
 
             var trieNode = stationsTrie.Search(sanitizedSearchString);

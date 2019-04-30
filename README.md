@@ -11,7 +11,7 @@ The matching words are obtained by recursively traversing the tree from the last
 ## Assumptions
 - No limited alphabet is expected in the solution. 
 - The whole Trie structure is kept in memory and it is assumed there is enough memory for the structure.
-- Search string and stations names are case insensitive and trimmed.
+- Search string and stations names are case insensitive.
 
 # Platform and tools
 

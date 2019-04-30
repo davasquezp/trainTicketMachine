@@ -71,20 +71,18 @@ namespace TrainTicketMachineTests
         }
 
         [Fact]
-        public void ShouldFindStationsTrimmingSpaces()
+        public void ShouldFindStationsAfterSpace()
         {
             var givenStations = new[] { "LIVERPOOL", "LONDON BRIDGE", "LONDONDERRY"};
-            var searchString = "  LoNDoN  ";
+            var searchString = "LoNDoN ";
             var stationsSearch = StationsSearch.BuildFromStations(givenStations);
             var (stations, characters) = stationsSearch.Search(searchString);
 
-            Assert.Equal(2, stations.Count());
+            Assert.Single(stations);
             Assert.Contains("LONDON BRIDGE", stations);
-            Assert.Contains("LONDONDERRY", stations);
 
-            Assert.Equal(2, characters.Count());
-            Assert.Contains(' ', characters);
-            Assert.Contains('D', characters);
+            Assert.Single(characters);
+            Assert.Contains('B', characters);
         }
 
         [Fact]
